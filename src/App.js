@@ -1,22 +1,3 @@
-// import React from 'react';
-
-// class App extends React.Component {
-//   // you will need a place to store your state in this component.
-//   // design `App` to be the parent component of your application.
-//   // this component is going to take care of state, and any change handlers you need to work with your state
-//   render() {
-//     return (
-//       <div>
-//         <h2>Welcome to your Todo App!</h2>
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -29,32 +10,32 @@ const todoData = [
   {
     name: 'Clean up',
     id: 123,
-    purchased: false
+    completed: false
   },
   {
     name: 'Wash Dishes',
     id: 124,
-    purchased: false
+    completed: false
   },
   {
     name: 'Study JavaScript',
     id: 1235,
-    purchased: false
+    completed: false
   },
   {
     name: 'Make Money',
     id: 1246,
-    purchased: false
+    completed: false
   },
   {
     name: 'Make Food',
     id: 1237,
-    purchased: false
+    completed: false
   },
   {
     name: 'Clean Car',
     id: 1248,
-    purchased: true
+    completed: true
   }
 ];
 
@@ -65,25 +46,16 @@ class App extends React.Component {
       name: 'Dustin',
       tasks: todoData 
     };
-
-    // this.toggleItem = this.toggleItem.bind(this);
   }
 
   toggleItem = id => {
     console.log(id);
-    // use this.setState
-    // loop through the arr
-    // find which element we clicked update the "pruchased" property
     this.setState({
       tasks: this.state.tasks.map(item => {
         if (item.id === id) {
           return {
             ...item,
-            // Same as:
-            // name: item.name,
-            // id: item.id,
-            // purchased: item.purchased,
-            purchased: !item.purchased
+            completed: !item.completed
           };
         } else {
           return item;
@@ -93,19 +65,19 @@ class App extends React.Component {
   };
 
   addItem = itemName => {
-    const newItem = {
+    const newTask = {
       name: itemName,
       id: Date.now(),
-      purchased: false
+      completed: false
     };
     this.setState({
-      tasks: [...this.state.tasks, newItem]
+      tasks: [...this.state.tasks, newTask]
     });
   };
 
-  clearPurchased = () => {
+  clearCompleted = () => {
     this.setState({
-      tasks: this.state.tasks.filter(item => !item.purchased)
+      tasks: this.state.tasks.filter(item => !item.completed)
     });
   };
 
@@ -113,7 +85,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="header">
-          <h1>Shopping List</h1>
+          <h1>Task List</h1>
           <ListForm addItem={this.addItem} />
         </div>
         <TodoList
