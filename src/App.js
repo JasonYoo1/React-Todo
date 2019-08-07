@@ -48,7 +48,7 @@ class App extends React.Component {
     };
   }
 
-  toggleItem = id => {
+  toggleItem = (id) => {
     console.log(id);
     this.setState({
       tasks: this.state.tasks.map(item => {
